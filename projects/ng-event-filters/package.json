@@ -1,0 +1,29 @@
+{
+    "name": "@tinkoff/ng-event-filters",
+    "version": "1.0.0",
+    "peerDependencies": {
+        "@angular/core": ">=4.0.0",
+        "@angular/platform-browser": ">=4.0.0"
+    },
+    "description": "This is a library for optimizing performance sensitive events and declarative preventDefault and stopPropagation",
+    "keywords": [
+        "angular",
+        "ng",
+        "preventDefault",
+        "stopPropagation",
+        "event",
+        "filter",
+        "EventManager",
+        "EventManagerPlugin",
+        "performance",
+        "optimize",
+        "optimization",
+        "change",
+        "detection"
+    ],
+    "license": "Apache-2.0",
+    "authors": ["Alex Inkin <a.inkin@tinkoff.ru>", "Roman Sedov <r.sedov@tinkoff.ru>"],
+    "repository": "https://github.com/TinkoffCreditSystems/ng-event-filters",
+    "bugs": "https://github.com/TinkoffCreditSystems/ng-event-filters/issues",
+    "homepage": "https://github.com/TinkoffCreditSystems/ng-event-filters#README"
+}

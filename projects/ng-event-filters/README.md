@@ -2,10 +2,10 @@
 
 [![angular-open-source-starter](https://img.shields.io/badge/made%20with-angular--open--source--starter-d81676?logo=angular)](https://github.com/TinkoffCreditSystems/angular-open-source-starter)
 
-**@tinkoff/ng-event-filters** is a tiny (1KB gzip) library for
-optimizing change detection cycles for performance sensitive events
-(such as _touchmove_, _scroll_, _drag_ etc.) and declarative
-_preventDefault()_ and _stopPropagation()_.
+> **@tinkoff/ng-event-filters** is a tiny (1KB gzip) library for
+> optimizing change detection cycles for performance sensitive events
+> (such as _touchmove_, _scroll_, _drag_ etc.) and declarative
+> _preventDefault()_ and _stopPropagation()_.
 
 ## How to use
 

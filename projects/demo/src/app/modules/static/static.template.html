@@ -1,0 +1,37 @@
+<h2>Example</h2>
+<p class="flex">
+    <custom-select [items]="items"></custom-select>
+    <button (click)="onOpened()">Show popup</button>
+</p>
+<blockquote>
+    When you mouse over an option in a dropdown — it gets focused. You can then use arrows
+    to move focus to another item, keeping mouse hovering over previously focused element.
+    <p>
+        When you move your cursor — that item is focused again. You can see this behavior
+        in virtually every dropdown menu both in OS and inside browser. Reacting to every
+        <code>mousemove</code> event is unnecessary, because when item is already focused,
+        you do not need to do anything and there is no need to trigger change detection.
+    </p>
+    <code>@tinkoff/ng-event-filters</code> allows you to skip events using
+    <code>.silent</code> event modifier and <code>@filter</code> decorator. It also adds
+    <code>.stop</code> and <code>.prevent</code> event modifiers to prevent default and
+    stop propagation in declarative fashion.
+</blockquote>
+<h2>HTML and TypeScript source code for Select component</h2>
+<pre><code [highlight]="html"></code></pre>
+<pre><code [highlight]="typescript"></code></pre>
+<blockquote>
+    Keep in mind example is heavily simplified. To use AOT all filtering functions must be
+    exported named functions and arguments number must match.
+</blockquote>
+<popup *ngIf="popup" (closed)="onClosed()">
+    <h1>Popup</h1>
+    <custom-select [items]="items"></custom-select>
+    <blockquote>
+        When Esc button is pressed, popup should close. However, if dropdown is opened in
+        Select — Esc button should only close the dropdown. This can be achieved by
+        stopping event propagation. But if the dropdown is already closed, Select should
+        not handle Esc keydown event. This can be achieved using
+        <code>@filter</code> decorator.
+    </blockquote>
+</popup>
