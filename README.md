@@ -1,5 +1,8 @@
 # Angular Event Filters
 
+[![npm version](https://img.shields.io/npm/v/@tinkoff/ng-event-filters.svg)](https://npmjs.com/package/@tinkoff/ng-event-filters)
+[![Build Status](https://travis-ci.org/TinkoffCreditSystems/ng-event-filters.svg?branch=master)](https://travis-ci.org/TinkoffCreditSystems/ng-event-filters)
+[![Coverage Status](https://coveralls.io/repos/github/TinkoffCreditSystems/ng-event-filters/badge.svg?branch=master)](https://coveralls.io/github/TinkoffCreditSystems/ng-event-filters?branch=master)
 [![angular-open-source-starter](https://img.shields.io/badge/made%20with-angular--open--source--starter-d81676?logo=angular)](https://github.com/TinkoffCreditSystems/angular-open-source-starter)
 
 **@tinkoff/ng-event-filters** is a tiny (1KB gzip) library for
