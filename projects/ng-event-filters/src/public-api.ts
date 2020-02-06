@@ -1,5 +1,5 @@
 /**
- * Public API Surface of ng-event-filters
+ * Public API Surface of @tinkoff/ng-event-filters
  */
 export * from './constants/plugins';
 export * from './decorators/filter';
