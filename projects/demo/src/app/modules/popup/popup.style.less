@@ -1,0 +1,26 @@
+:host {
+    position: fixed;
+    width: 320px;
+    left: 50%;
+    top: 20%;
+    margin-left: -160px;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0 rgba(27, 31, 38, 0.24), 0 18px 30px 0 rgba(27, 31, 38, 0.5);
+
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .content {
+        position: relative;
+        padding: 1px 20px;
+        border-radius: 8px;
+        background: white;
+    }
+}
