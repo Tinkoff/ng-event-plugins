@@ -17,6 +17,9 @@
         "@angular/router": "8.2.0",
         "@tinkoff/ng-event-filters": "latest",
         "core-js": "2.6.9",
+        "highlight.js": "^9.15.5",
+        "ngx-highlightjs": "3.0.3",
+        "raw-loader": "1.0.0",
         "rxjs": "6.5.2",
         "zone.js": "0.9.1"
     },

@@ -99,6 +99,10 @@ onScroll(_element: HTMLElement) {
     such as `keydown.enter` or `keydown.arrowDown` since Angular re-enters `NgZone`
     inside internal handlers.
 
+## Demo
+
+You can try this [interactive demo](https://stackblitz.com/github/TinkoffCreditSystems/ng-event-filters/tree/master/projects/demo)
+
 ## Open-source
 
 Do you also want to open-source something, but hate the collateral work?

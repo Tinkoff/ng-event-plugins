@@ -5,9 +5,9 @@ import {Filter} from '../types/filter';
  * TODO: This will not be needed in Angular 10
  * when libraries are allowed to use Ivy renderer and markDirty becomes stable API
  */
-export function filter<T extends object>(filter: Filter<T>): MethodDecorator {
-    return (target: Object, key: string | symbol, desc: PropertyDescriptor) => {
-        const hostListener = HostListener('init.' + String(key), ['$event']);
+export function filter<T>(filter: Filter<T>): MethodDecorator {
+    return (target, key, desc: PropertyDescriptor) => {
+        const hostListener = HostListener(`init.${String(key)}`, ['$event']);
         const {value} = desc;
 
         desc.value = function() {
