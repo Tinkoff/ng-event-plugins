@@ -97,7 +97,7 @@ onScroll(_element: HTMLElement) {
 
 ## Demo
 
-You can try this [interactive demo](https://stackblitz.com/github/TinkoffCreditSystems/ng-event-filters/tree/master/projects/demo)
+You can try this [interactive demo](https://codesandbox.io/s/github/TinkoffCreditSystems/ng-event-filters/tree/master/projects/demo)
 
 ## Open-source
 
