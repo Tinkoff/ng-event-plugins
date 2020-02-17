@@ -2,7 +2,7 @@ import * as less from 'highlight.js/lib/languages/less';
 import * as typescript from 'highlight.js/lib/languages/typescript';
 import * as xml from 'highlight.js/lib/languages/xml';
 
-import {LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {PLUGINS} from '@tinkoff/ng-event-filters';
@@ -34,6 +34,10 @@ export function hljsLanguages(): ReadonlyArray<HighlightLanguage> {
         {
             provide: LocationStrategy,
             useClass: PathLocationStrategy,
+        },
+        {
+            provide: APP_BASE_HREF,
+            useValue: '',
         },
         ...PLUGINS,
     ],
