@@ -15,7 +15,7 @@
         "@angular/platform-browser": "^8.2.4",
         "@angular/platform-browser-dynamic": "8.2.0",
         "@angular/router": "8.2.0",
-        "@tinkoff/ng-event-filters": "latest",
+        "@tinkoff/ng-event-plugins": "latest",
         "core-js": "2.6.9",
         "highlight.js": "^9.15.5",
         "ngx-highlightjs": "3.0.3",

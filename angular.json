@@ -77,24 +77,24 @@
                 }
             }
         },
-        "ng-event-filters": {
+        "ng-event-plugins": {
             "projectType": "library",
-            "root": "projects/ng-event-filters",
-            "sourceRoot": "projects/ng-event-filters/src",
+            "root": "projects/ng-event-plugins",
+            "sourceRoot": "projects/ng-event-plugins/src",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-ng-packagr:build",
                     "options": {
-                        "tsConfig": "projects/ng-event-filters/tsconfig.lib.json",
-                        "project": "projects/ng-event-filters/ng-package.json"
+                        "tsConfig": "projects/ng-event-plugins/tsconfig.lib.json",
+                        "project": "projects/ng-event-plugins/ng-package.json"
                     }
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/ng-event-filters/src/test.ts",
-                        "tsConfig": "projects/ng-event-filters/tsconfig.spec.json",
-                        "karmaConfig": "projects/ng-event-filters/karma.conf.js",
+                        "main": "projects/ng-event-plugins/src/test.ts",
+                        "tsConfig": "projects/ng-event-plugins/tsconfig.spec.json",
+                        "karmaConfig": "projects/ng-event-plugins/karma.conf.js",
                         "codeCoverage": true,
                         "browsers": "ChromeHeadless"
                     }
@@ -103,8 +103,8 @@
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
                         "tsConfig": [
-                            "projects/ng-event-filters/tsconfig.lib.json",
-                            "projects/ng-event-filters/tsconfig.spec.json"
+                            "projects/ng-event-plugins/tsconfig.lib.json",
+                            "projects/ng-event-plugins/tsconfig.spec.json"
                         ],
                         "exclude": ["**/node_modules/**"]
                     }
@@ -112,5 +112,5 @@
             }
         }
     },
-    "defaultProject": "ng-event-filters"
+    "defaultProject": "ng-event-plugins"
 }

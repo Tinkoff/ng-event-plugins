@@ -1,12 +1,12 @@
 # Angular Event Filters
 
-[![npm version](https://img.shields.io/npm/v/@tinkoff/ng-event-filters.svg)](https://npmjs.com/package/@tinkoff/ng-event-filters)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@tinkoff/ng-event-filters)](https://bundlephobia.com/result?p=@tinkoff/ng-event-filters)
-[![Build Status](https://travis-ci.com/TinkoffCreditSystems/ng-event-filters.svg?branch=master)](https://travis-ci.com/TinkoffCreditSystems/ng-event-filters)
-[![Coverage Status](https://coveralls.io/repos/github/TinkoffCreditSystems/ng-event-filters/badge.svg?branch=master)](https://coveralls.io/github/TinkoffCreditSystems/ng-event-filters?branch=master)
+[![npm version](https://img.shields.io/npm/v/@tinkoff/ng-event-plugins.svg)](https://npmjs.com/package/@tinkoff/ng-event-plugins)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@tinkoff/ng-event-plugins)](https://bundlephobia.com/result?p=@tinkoff/ng-event-plugins)
+[![Build Status](https://travis-ci.com/TinkoffCreditSystems/ng-event-plugins.svg?branch=master)](https://travis-ci.com/TinkoffCreditSystems/ng-event-plugins)
+[![Coverage Status](https://coveralls.io/repos/github/TinkoffCreditSystems/ng-event-plugins/badge.svg?branch=master)](https://coveralls.io/github/TinkoffCreditSystems/ng-event-plugins?branch=master)
 [![angular-open-source-starter](https://img.shields.io/badge/made%20with-angular--open--source--starter-d81676?logo=angular)](https://github.com/TinkoffCreditSystems/angular-open-source-starter)
 
-**@tinkoff/ng-event-filters** is a tiny (1KB gzip) library for
+**@tinkoff/ng-event-plugins** is a tiny (1KB gzip) library for
 optimizing change detection cycles for performance sensitive events
 (such as _touchmove_, _scroll_, _drag_ etc.) and declarative
 _preventDefault()_ and _stopPropagation()_.
@@ -17,7 +17,7 @@ _preventDefault()_ and _stopPropagation()_.
 
     ```typescript
     import {NgModule} from '@angular/core';
-    import {PLUGINS} from '@tinkoff/ng-event-filters'; // <-- THIS
+    import {NG_EVENT_PLUGINS} from '@tinkoff/ng-event-plugins'; // <-- THIS
 
     @NgModule({
         bootstrap: [
@@ -29,7 +29,7 @@ _preventDefault()_ and _stopPropagation()_.
         declarations: [
             /*...*/
         ],
-        providers: [...PLUGINS], // <-- GOES HERE
+        providers: NG_EVENT_PLUGINS, // <-- GOES HERE
     })
     export class AppModule {}
     ```
@@ -60,7 +60,8 @@ _preventDefault()_ and _stopPropagation()_.
     </div>
     ```
 
-3. You can also re-enter `NgZone` and trigger change detection, using `@filter` decorator:
+3. You can also re-enter `NgZone` and trigger change detection, using `@shouldCall` decorator
+   that takes a predicate function as argument:
 
 ```html
 <div (scroll.silent)="onScroll($event.currentTarget)">
@@ -70,7 +71,7 @@ _preventDefault()_ and _stopPropagation()_.
 ```
 
 ```typescript
-import {filter} from '@tinkoff/ng-event-filters';
+import {shouldCall} from '@tinkoff/ng-event-plugins';
 
 export function scrollFilter(element: HTMLElement): boolean {
     return element.scrollTop === element.scrollHeight - element.clientHeight;
@@ -78,21 +79,23 @@ export function scrollFilter(element: HTMLElement): boolean {
 
 // ...
 
-@filter(scrollFilter)
+@shouldCall(scrollFilter)
 onScroll(_element: HTMLElement) {
     this.someService.requestMoreData();
 }
 ```
 
-> **All examples above work the same when used with `@HostListener`.**
+> **All examples above work the same when used with `@HostListener` and `CustomEvent`**
 
 ## Important notes
 
--   Filter function will be called with the same arguments as the
-    decorated method. Decorated method will be called and change detection
-    triggered if filter function returns `true`.
+-   Predicate is called with the same arguments as the decorated method and
+    in the context of class instance (has access to `this`)
 
--   Filter function must be exported named function for AOT, arrow
+-   Decorated method will be called and change detection triggered if predicate
+    returns `true`.
+
+-   Predicates must be exported named function for AOT, arrow
     functions will trigger build error.
 
 -   `.silent` modifier will not work with built-in keyboard pseudo-events,
@@ -101,7 +104,7 @@ onScroll(_element: HTMLElement) {
 
 ## Demo
 
-You can try this [interactive demo](https://codesandbox.io/s/github/TinkoffCreditSystems/ng-event-filters/tree/master/projects/demo)
+You can try this [interactive demo](https://codesandbox.io/s/github/TinkoffCreditSystems/ng-event-plugins/tree/master/projects/demo)
 
 ## Open-source
 
