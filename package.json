@@ -1,5 +1,5 @@
 {
-    "name": "@tinkoff/ng-event-filters",
+    "name": "@tinkoff/ng-event-plugins",
     "version": "1.0.0",
     "scripts": {
         "ng": "ng",
@@ -7,6 +7,7 @@
         "start:ssr": "npm run build:demo:ssr && npm run serve:ssr",
         "start:prerender": "npm run build:demo:prerender && npm run serve:prerender",
         "build": "ng build",
+        "postbuild": "node scripts/postbuild.js",
         "build:demo:client": "ng run demo:build",
         "build:demo:server": "ng run demo:server",
         "build:demo:ssr": "npm run build:demo:client && npm run build:demo:server && npm run compile:server",
@@ -23,7 +24,7 @@
         "release:patch": "npm run release -- --release-as patch",
         "release:minor": "npm run release -- --release-as minor",
         "release:major": "npm run release -- --release-as major",
-        "publish": "npm run build && npm publish ./dist/ng-event-filters"
+        "publish": "npm run build && npm publish ./dist/ng-event-plugins"
     },
     "description": "This is a library for optimizing performance sensitive events and declarative preventDefault and stopPropagation",
     "keywords": [
@@ -43,9 +44,9 @@
     ],
     "license": "Apache-2.0",
     "authors": ["Alex Inkin <a.inkin@tinkoff.ru>", "Roman Sedov <r.sedov@tinkoff.ru>"],
-    "repository": "https://github.com/TinkoffCreditSystems/ng-event-filters",
-    "bugs": "https://github.com/TinkoffCreditSystems/ng-event-filters/issues",
-    "homepage": "https://github.com/TinkoffCreditSystems/ng-event-filters#README",
+    "repository": "https://github.com/TinkoffCreditSystems/ng-event-plugins",
+    "bugs": "https://github.com/TinkoffCreditSystems/ng-event-plugins/issues",
+    "homepage": "https://github.com/TinkoffCreditSystems/ng-event-plugins#README",
     "dependencies": {
         "@angular/animations": "^7.2.15",
         "@angular/common": "^7.2.15",

@@ -1,5 +1,5 @@
 {
-    "name": "@tinkoff/ng-event-filters",
+    "name": "@tinkoff/ng-event-plugins",
     "version": "1.0.0",
     "peerDependencies": {
         "@angular/core": ">=4.0.0",
@@ -23,7 +23,7 @@
     ],
     "license": "Apache-2.0",
     "authors": ["Alex Inkin <a.inkin@tinkoff.ru>", "Roman Sedov <r.sedov@tinkoff.ru>"],
-    "repository": "https://github.com/TinkoffCreditSystems/ng-event-filters",
-    "bugs": "https://github.com/TinkoffCreditSystems/ng-event-filters/issues",
-    "homepage": "https://github.com/TinkoffCreditSystems/ng-event-filters#README"
+    "repository": "https://github.com/TinkoffCreditSystems/ng-event-plugins",
+    "bugs": "https://github.com/TinkoffCreditSystems/ng-event-plugins/issues",
+    "homepage": "https://github.com/TinkoffCreditSystems/ng-event-plugins#README"
 }

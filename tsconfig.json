@@ -19,7 +19,7 @@
         "typeRoots": ["node_modules/@types"],
         "lib": ["es2018", "dom"],
         "paths": {
-            "@tinkoff/ng-event-filters": ["projects/ng-event-filters/src/public-api"]
+            "@tinkoff/ng-event-plugins": ["projects/ng-event-plugins/src/public-api"]
         }
     }
 }

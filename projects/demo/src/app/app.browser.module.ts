@@ -5,7 +5,7 @@ import * as xml from 'highlight.js/lib/languages/xml';
 import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {PLUGINS} from '@tinkoff/ng-event-filters';
+import {NG_EVENT_PLUGINS} from '@tinkoff/ng-event-plugins';
 import {HighlightLanguage, HighlightModule} from 'ngx-highlightjs';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routes';
@@ -39,7 +39,7 @@ export function hljsLanguages(): ReadonlyArray<HighlightLanguage> {
             provide: APP_BASE_HREF,
             useValue: '',
         },
-        ...PLUGINS,
+        NG_EVENT_PLUGINS,
     ],
 })
 export class AppBrowserModule {}

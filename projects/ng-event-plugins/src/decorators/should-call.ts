@@ -1,11 +1,11 @@
 import {HostListener, NgZone} from '@angular/core';
-import {Filter} from '../types/filter';
+import {Predicate} from '../types/predicate';
 
 /**
  * TODO: This will not be needed in Angular 10
  * when libraries are allowed to use Ivy renderer and markDirty becomes stable API
  */
-export function filter<T>(filter: Filter<T>): MethodDecorator {
+export function shouldCall<T>(predicate: Predicate<T>): MethodDecorator {
     return (target, key, desc: PropertyDescriptor) => {
         const hostListener = HostListener(`init.${String(key)}`, ['$event']);
         const {value} = desc;
@@ -15,7 +15,7 @@ export function filter<T>(filter: Filter<T>): MethodDecorator {
 
             Object.defineProperty(this, key, {
                 value(this: T, ...args: any[]) {
-                    if (filter.apply(this, args)) {
+                    if (predicate.apply(this, args)) {
                         zone.run(() => {
                             value.apply(this, args);
                         });
@@ -31,12 +31,12 @@ export function filter<T>(filter: Filter<T>): MethodDecorator {
 /**
  * TODO: Use this in Angular 10
  */
-// export function filter<T extends object>(filter: Filter<T>): MethodDecorator {
+// export function shouldCall<T extends object>(predicate: Predicate<T>): MethodDecorator {
 //     return (_: Object, _key: string | symbol, desc: PropertyDescriptor) => {
 //         const {value} = desc;
 //
 //         desc.value = function(this: T, ...args: any[]) {
-//             if (filter.apply(this, args)) {
+//             if (predicate.apply(this, args)) {
 //                 value.apply(this, args);
 //                 markDirty(this);
 //             }

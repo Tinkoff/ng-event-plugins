@@ -5,7 +5,7 @@ import {SilentEventPlugin} from '../plugins/silent.plugin';
 import {StopEventPlugin} from '../plugins/stop.plugin';
 import {ZoneEventPlugin} from '../plugins/zone.plugin';
 
-export const PLUGINS: Provider[] = [
+export const NG_EVENT_PLUGINS: Provider[] = [
     {
         provide: EVENT_MANAGER_PLUGINS,
         useClass: SilentEventPlugin,

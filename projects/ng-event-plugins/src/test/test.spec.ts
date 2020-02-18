@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, HostListener} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {PLUGINS} from '../constants/plugins';
-import {filter} from '../decorators/filter';
+import {NG_EVENT_PLUGINS} from '../constants/plugins';
+import {shouldCall} from '../decorators/should-call';
 
 describe('EventManagers', () => {
     @Component({
@@ -33,7 +33,7 @@ describe('EventManagers', () => {
         onPreventedClick = jasmine.createSpy('onPreventedClick');
         onWrapper = jasmine.createSpy('onWrapper');
 
-        @filter(bubbles => bubbles)
+        @shouldCall(bubbles => bubbles)
         @HostListener('document:click.silent.stop.prevent')
         @HostListener('document:init')
         onFilteredClicks(_bubbles: boolean) {
@@ -47,7 +47,7 @@ describe('EventManagers', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [TestComponent],
-            providers: PLUGINS,
+            providers: NG_EVENT_PLUGINS,
         });
 
         fixture = TestBed.createComponent(TestComponent);
