@@ -37,8 +37,8 @@
         "EventManager",
         "EventManagerPlugin",
         "performance",
-        "optimize",
         "optimization",
+        "optimize",
         "change",
         "detection"
     ],
