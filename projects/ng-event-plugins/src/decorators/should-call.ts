@@ -1,4 +1,4 @@
-import {HostListener, NgZone} from '@angular/core';
+import {NgZone} from '@angular/core';
 import {Predicate} from '../types/predicate';
 
 /**
@@ -6,8 +6,7 @@ import {Predicate} from '../types/predicate';
  * when libraries are allowed to use Ivy renderer and markDirty becomes stable API
  */
 export function shouldCall<T>(predicate: Predicate<T>): MethodDecorator {
-    return (target, key, desc: PropertyDescriptor) => {
-        const hostListener = HostListener(`init.${String(key)}`, ['$event']);
+    return (_, key, desc: PropertyDescriptor) => {
         const {value} = desc;
 
         desc.value = function() {
@@ -23,8 +22,6 @@ export function shouldCall<T>(predicate: Predicate<T>): MethodDecorator {
                 },
             });
         };
-
-        return hostListener(target, key, desc);
     };
 }
 

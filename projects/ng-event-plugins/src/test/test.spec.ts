@@ -34,6 +34,7 @@ describe('EventManagers', () => {
         onWrapper = jasmine.createSpy('onWrapper');
 
         @shouldCall(bubbles => bubbles)
+        @HostListener('init', ['$event'])
         @HostListener('document:click.silent.stop.prevent')
         @HostListener('document:init')
         onFilteredClicks(_bubbles: boolean) {
