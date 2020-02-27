@@ -71,6 +71,7 @@ _preventDefault()_ and _stopPropagation()_.
 ```
 
 ```typescript
+import {HostListener} from '@angular/core';
 import {shouldCall} from '@tinkoff/ng-event-plugins';
 
 export function scrollFilter(element: HTMLElement): boolean {
@@ -80,12 +81,16 @@ export function scrollFilter(element: HTMLElement): boolean {
 // ...
 
 @shouldCall(scrollFilter)
+@HostListener('init.onScroll', ['$event'])
 onScroll(_element: HTMLElement) {
     this.someService.requestMoreData();
 }
 ```
 
-> **All examples above work the same when used with `@HostListener` and `CustomEvent`**
+**IMPORTANT** You must couple `@shouldCall` with `@HostListener` for `init` event
+as shown above until Angular 10 and **@tinkoff/ng-event-plugins** v.2.0 are released
+
+> All examples above work the same when used with `@HostListener` and `CustomEvent`
 
 ## Important notes
 
