@@ -111,6 +111,9 @@ as shown above until Angular 10 and **@tinkoff/ng-event-plugins** v.2.0 are rele
 
 You can try this [interactive demo](https://codesandbox.io/s/github/TinkoffCreditSystems/ng-event-plugins/tree/master/projects/demo)
 
+You can also read a this [detailed article](https://indepth.dev/supercharge-event-management-in-your-angular-application/) 
+explaining how this library works
+
 ## Open-source
 
 Do you also want to open-source something, but hate the collateral work?
