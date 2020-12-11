@@ -87,6 +87,11 @@
                     "options": {
                         "tsConfig": "projects/ng-event-plugins/tsconfig.lib.json",
                         "project": "projects/ng-event-plugins/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/cdk/tsconfig.lib.prod.json"
+                        }
                     }
                 },
                 "test": {

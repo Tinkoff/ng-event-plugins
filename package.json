@@ -43,10 +43,7 @@
         "detection"
     ],
     "license": "Apache-2.0",
-    "authors": [
-        "Alex Inkin <a.inkin@tinkoff.ru>",
-        "Roman Sedov <r.sedov@tinkoff.ru>"
-    ],
+    "authors": ["Alex Inkin <a.inkin@tinkoff.ru>", "Roman Sedov <r.sedov@tinkoff.ru>"],
     "repository": "https://github.com/TinkoffCreditSystems/ng-event-plugins",
     "bugs": "https://github.com/TinkoffCreditSystems/ng-event-plugins/issues",
     "homepage": "https://github.com/TinkoffCreditSystems/ng-event-plugins#README",
@@ -98,6 +95,7 @@
         "prettier": "^2.1.1",
         "standard-version": "^9.0.0",
         "ts-node": "~7.0.0",
+        "tsickle": "^0.38.1",
         "tslint": "~5.15.0",
         "typescript": "~3.8.3"
     },
@@ -107,10 +105,7 @@
         }
     },
     "lint-staged": {
-        "*.{js,ts,html,md,less,json}": [
-            "prettier --write",
-            "git add"
-        ],
+        "*.{js,ts,html,md,less,json}": ["prettier --write", "git add"],
         "*.ts": "tslint"
     },
     "standard-version": {
