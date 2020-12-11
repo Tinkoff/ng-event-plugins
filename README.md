@@ -39,6 +39,7 @@ _preventDefault()_ and _stopPropagation()_.
     - `.stop` to call stopPropagation() on event
     - `.prevent` to call preventDefault() on event
     - `.silent` to call event handler outside Angular's `NgZone`
+    - `.capture` to listen to events in [capture phase](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase)
 
     For example:
 
@@ -49,14 +50,18 @@ _preventDefault()_ and _stopPropagation()_.
     ```
 
     ```html
-    <div (click.stop)="onClick()">
-        Clicks on this DIV will not bubble up
-    </div>
+    <div (click.stop)="onClick()">Clicks on this DIV will not bubble up</div>
     ```
 
     ```html
     <div (mousemove.silent)="onMouseMove()">
         Callbacks to mousemove will not trigger change detection
+    </div>
+    ```
+
+    ```html
+    <div (click.capture.stop)="onClick()">
+        <div (click)="never()">Clicks will be stopped before reaching this DIV</div>
     </div>
     ```
 
@@ -88,7 +93,7 @@ onScroll(_element: HTMLElement) {
 ```
 
 **IMPORTANT** You must couple `@shouldCall` with `@HostListener` for `init` event
-as shown above until Angular 10 and **@tinkoff/ng-event-plugins** v.2.0 are released
+as shown above until `markDirty` becomes public API in Angular and **@tinkoff/ng-event-plugins** v.3 is released
 
 > All examples above work the same when used with `@HostListener` and `CustomEvent`
 
@@ -111,7 +116,7 @@ as shown above until Angular 10 and **@tinkoff/ng-event-plugins** v.2.0 are rele
 
 You can try this [interactive demo](https://codesandbox.io/s/github/TinkoffCreditSystems/ng-event-plugins/tree/master/projects/demo)
 
-You can also read a this [detailed article](https://indepth.dev/supercharge-event-management-in-your-angular-application/) 
+You can also read a this [detailed article](https://indepth.dev/supercharge-event-management-in-your-angular-application/)
 explaining how this library works
 
 ## Open-source

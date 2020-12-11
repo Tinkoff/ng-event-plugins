@@ -1,5 +1,7 @@
-import * as typescript from '!!raw-loader!../select/select.component.ts';
-import * as html from '!!raw-loader!../select/select.template.html';
+// @ts-ignore
+import {default as typescript} from '!!raw-loader!../select/select.component.ts';
+// @ts-ignore
+import {default as html} from '!!raw-loader!../select/select.template.html';
 import {AfterViewChecked, ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
