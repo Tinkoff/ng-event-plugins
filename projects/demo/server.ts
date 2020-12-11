@@ -4,7 +4,6 @@ import 'zone.js/dist/zone-node';
 
 import {enableProdMode} from '@angular/core';
 import {ngExpressEngine} from '@nguniversal/express-engine';
-import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 import * as express from 'express';
 import {join} from 'path';
 
@@ -14,13 +13,12 @@ const app = express();
 const PORT = process.env.PORT || 3333;
 const DIST_FOLDER = join(process.cwd(), 'dist');
 const DEMO_FOLDER = join(DIST_FOLDER, 'demo', 'browser');
-const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('../server/main');
+const {AppServerModuleNgFactory} = require('../server/main');
 
 app.engine(
     'html',
     ngExpressEngine({
         bootstrap: AppServerModuleNgFactory,
-        providers: [provideModuleMap(LAZY_MODULE_MAP)],
     }),
 );
 

@@ -1,10 +1,12 @@
 import {EventManager} from '@angular/platform-browser';
-// this is not public API so we cannot extend it
-// import {EventManagerPlugin} from '@angular/platform-browser/src/dom/events/event_manager';
 
 // TODO: A subject to change: https://github.com/angular/angular/issues/3929
-export abstract class AbstractEventPlugin {
-    // extends EventManagerPlugin {
+type EventManagerArg = ConstructorParameters<typeof EventManager>[0][0];
+type EventManagerPlugin = {
+    [K in keyof EventManagerArg]: EventManagerArg[K];
+};
+
+export abstract class AbstractEventPlugin implements EventManagerPlugin {
     manager!: EventManager;
 
     protected abstract readonly modifier: string;

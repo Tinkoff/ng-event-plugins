@@ -24,6 +24,9 @@ describe('EventManagers', () => {
                     (click.silent)="onFilteredClicks($event.bubbles)"
                 ></div>
             </div>
+            <div class="wrapper" (click.capture.stop)="noop()">
+                <div id="captured-clicks" class="element" (click)="onCaptured()"></div>
+            </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
@@ -32,6 +35,7 @@ describe('EventManagers', () => {
         onStoppedClick = jasmine.createSpy('onStoppedClick');
         onPreventedClick = jasmine.createSpy('onPreventedClick');
         onWrapper = jasmine.createSpy('onWrapper');
+        onCaptured = jasmine.createSpy('onCaptured');
 
         @shouldCall(bubbles => bubbles)
         @HostListener('init', ['$event'])
@@ -40,6 +44,16 @@ describe('EventManagers', () => {
         onFilteredClicks(_bubbles: boolean) {
             this.flag = true;
         }
+
+        noop() {}
+    }
+
+    @Component({
+        template: `<div (document:click.capture)="noop()"></div>`,
+        changeDetection: ChangeDetectionStrategy.OnPush,
+    })
+    class BrokenComponent {
+        noop() {}
     }
 
     let fixture: ComponentFixture<TestComponent>;
@@ -47,7 +61,7 @@ describe('EventManagers', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TestComponent],
+            declarations: [TestComponent, BrokenComponent],
             providers: NG_EVENT_PLUGINS,
         });
 
@@ -109,5 +123,22 @@ describe('EventManagers', () => {
         fixture.detectChanges();
 
         expect(testComponent.flag).toBe(true);
+    });
+
+    it('Clicks are captured', () => {
+        const event = new Event('click', {bubbles: true});
+        const element = fixture.debugElement.query(By.css('#captured-clicks'))!
+            .nativeElement;
+
+        element.dispatchEvent(event);
+        fixture.detectChanges();
+
+        expect(testComponent.onCaptured).not.toHaveBeenCalled();
+    });
+
+    it('Global capture throws', () => {
+        expect(() => {
+            TestBed.createComponent(BrokenComponent).detectChanges();
+        }).toThrow();
     });
 });
