@@ -116,7 +116,7 @@ as shown above until `markDirty` becomes public API in Angular and **@tinkoff/ng
 
 You can try this [interactive demo](https://codesandbox.io/s/github/TinkoffCreditSystems/ng-event-plugins/tree/master/projects/demo)
 
-You can also read a this [detailed article](https://indepth.dev/supercharge-event-management-in-your-angular-application/)
+You can also read this [detailed article](https://indepth.dev/supercharge-event-management-in-your-angular-application/)
 explaining how this library works
 
 ## Open-source
