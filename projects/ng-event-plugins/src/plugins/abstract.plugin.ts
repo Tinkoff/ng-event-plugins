@@ -7,22 +7,26 @@ type EventManagerPlugin = {
 };
 
 export abstract class AbstractEventPlugin implements EventManagerPlugin {
-    manager!: EventManager;
-
     protected abstract readonly modifier: string;
+
+    manager!: EventManager;
 
     supports(event: string): boolean {
         return event.split('.').indexOf(this.modifier) !== -1;
     }
 
+    addGlobalEventListener(
+        _element: string,
+        _event: string,
+        _handler: Function,
+    ): Function {
+        throw new Error(
+            `Global event targets are not supported by ${this.modifier} plugin`,
+        );
+    }
+
     abstract addEventListener(
         element: HTMLElement,
-        event: string,
-        handler: Function,
-    ): Function;
-
-    abstract addGlobalEventListener(
-        element: string,
         event: string,
         handler: Function,
     ): Function;

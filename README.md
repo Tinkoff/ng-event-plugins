@@ -92,12 +92,12 @@ onScroll(_element: HTMLElement) {
 }
 ```
 
-**IMPORTANT** You must couple `@shouldCall` with `@HostListener` for `init` event
+**IMPORTANT:** You must couple `@shouldCall` with `@HostListener` for `init` event
 as shown above until `markDirty` becomes public API in Angular and **@tinkoff/ng-event-plugins** v.3 is released
 
 > All examples above work the same when used with `@HostListener` and `CustomEvent`
 
-## Important notes
+### Important notes
 
 -   Predicate is called with the same arguments as the decorated method and
     in the context of class instance (has access to `this`)
@@ -111,6 +111,34 @@ as shown above until `markDirty` becomes public API in Angular and **@tinkoff/ng
 -   `.silent` modifier will not work with built-in keyboard pseudo-events,
     such as `keydown.enter` or `keydown.arrowDown` since Angular re-enters `NgZone`
     inside internal handlers.
+
+## Observable host bindings
+
+In this library there's also a plugin that enables observable
+host bindings. Sounds weird to do host binding with event plugin,
+but the code is actually pretty simple. You can read more about it
+in this article [link coming soon].
+
+To use it you need to couple `@HostListener` and `@HostBinding` on the same
+`Observable` property with following syntax:
+
+```ts
+@HostBinding('$.disabled')
+@HostListener('$.disabled')
+readonly disabled$ = this.service.loading$
+```
+
+This supports all the native Angular syntax, such as `class.class-name` or `style.width.px`.
+
+**IMPORTANT:** To bind attributes you need to add `.attr` modifier in the end, not the beginning like
+in basic Angular binding. This is due to Angular using regexp to match for `attr.` string in `@HostBinding`
+decorator:
+
+```ts
+@HostBinding('$.aria-label.attr')
+@HostListener('$.aria-label.attr')
+readonly label$ = this.translations.get$('label');
+```
 
 ## Demo
 

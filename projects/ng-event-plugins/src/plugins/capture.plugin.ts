@@ -20,8 +20,4 @@ export class CaptureEventPlugin extends AbstractEventPlugin {
 
         return () => element.removeEventListener(this.unwrap(event), handler);
     }
-
-    addGlobalEventListener(): Function {
-        throw new Error(`Global event targets are not supported by Capture plugin`);
-    }
 }

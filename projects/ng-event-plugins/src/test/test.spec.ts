@@ -1,6 +1,14 @@
-import {ChangeDetectionStrategy, Component, HostListener} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostBinding,
+    HostListener,
+    Inject,
+} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
+import {BehaviorSubject} from 'rxjs';
 import {NG_EVENT_PLUGINS} from '../constants/plugins';
 import {shouldCall} from '../decorators/should-call';
 
@@ -36,6 +44,18 @@ describe('EventManagers', () => {
         onPreventedClick = jasmine.createSpy('onPreventedClick');
         onWrapper = jasmine.createSpy('onWrapper');
         onCaptured = jasmine.createSpy('onCaptured');
+
+        @HostBinding('$.data-value.attr')
+        @HostListener('$.data-value.attr')
+        @HostBinding('$.tabIndex')
+        @HostListener('$.tabIndex')
+        @HostBinding('$.style.width.%')
+        @HostListener('$.style.width.%')
+        @HostBinding('$.class.active')
+        @HostListener('$.class.active')
+        readonly test = new BehaviorSubject(1);
+
+        constructor(@Inject(ElementRef) readonly elementRef: ElementRef<HTMLElement>) {}
 
         @shouldCall(bubbles => bubbles)
         @HostListener('init', ['$event'])
@@ -140,5 +160,29 @@ describe('EventManagers', () => {
         expect(() => {
             TestBed.createComponent(BrokenComponent).detectChanges();
         }).toThrow();
+    });
+
+    it('Observable bindings work', () => {
+        expect(testComponent.elementRef.nativeElement.getAttribute('data-value')).toBe(
+            '1',
+        );
+        expect(testComponent.elementRef.nativeElement.tabIndex).toBe(1);
+        expect(testComponent.elementRef.nativeElement.style.width).toBe('1%');
+        expect(testComponent.elementRef.nativeElement.classList.contains('active')).toBe(
+            true,
+        );
+    });
+
+    it('Observable bindings are updated', () => {
+        testComponent.test.next(0);
+
+        expect(testComponent.elementRef.nativeElement.getAttribute('data-value')).toBe(
+            '0',
+        );
+        expect(testComponent.elementRef.nativeElement.tabIndex).toBe(0);
+        expect(testComponent.elementRef.nativeElement.style.width).toBe('0%');
+        expect(testComponent.elementRef.nativeElement.classList.contains('active')).toBe(
+            false,
+        );
     });
 });

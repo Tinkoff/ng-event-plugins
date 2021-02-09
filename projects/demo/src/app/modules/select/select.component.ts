@@ -19,6 +19,15 @@ import {shouldCall} from '@tinkoff/ng-event-plugins';
     styleUrls: ['./select.style.less'],
 })
 export class SelectComponent {
+    @ViewChild('input')
+    private readonly input!: ElementRef;
+
+    @ViewChildren('option')
+    private readonly options!: QueryList<ElementRef>;
+
+    @HostBinding('class._open')
+    open = false;
+
     @Input()
     items: ReadonlyArray<string> = [];
 
@@ -27,15 +36,6 @@ export class SelectComponent {
 
     @Output()
     valueChange = new EventEmitter<string>();
-
-    @HostBinding('class._open')
-    open = false;
-
-    @ViewChild('input')
-    private readonly input!: ElementRef;
-
-    @ViewChildren('option')
-    private readonly options!: QueryList<ElementRef>;
 
     constructor(@Inject(ElementRef) private readonly elementRef: ElementRef) {}
 
