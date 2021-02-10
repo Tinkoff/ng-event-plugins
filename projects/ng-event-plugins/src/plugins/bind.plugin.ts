@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {EMPTY, Observable} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {concat, defer, EMPTY, Observable} from 'rxjs';
+import {takeWhile} from 'rxjs/operators';
 import {AbstractEventPlugin} from './abstract.plugin';
 
 @Injectable()
@@ -14,10 +14,11 @@ export class BindEventPlugin extends AbstractEventPlugin {
         element[event] = EMPTY;
 
         const method = this.getMethod(element, event);
-        const sub = this.manager
-            .getZone()
-            .onStable.pipe(switchMap(() => element[event]))
-            .subscribe(method);
+        const zone$ = this.manager.getZone().onStable;
+        const sub = concat(
+            zone$.pipe(takeWhile(() => element[event] === EMPTY)),
+            defer(() => element[event]),
+        ).subscribe(method);
 
         return () => sub.unsubscribe();
     }
