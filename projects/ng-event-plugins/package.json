@@ -3,7 +3,8 @@
     "version": "2.0.0",
     "peerDependencies": {
         "@angular/core": ">=9.0.0",
-        "@angular/platform-browser": ">=9.0.0"
+        "@angular/platform-browser": ">=9.0.0",
+        "rxjs": ">=6.0.0"
     },
     "description": "This is a library for optimizing performance sensitive events and declarative preventDefault and stopPropagation",
     "keywords": [
