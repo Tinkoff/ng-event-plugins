@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.0.0...v2.1.0) (2021-02-10)
+
+
+### Features
+
+* **bind:** add plugin for Observable host binding ([#11](https://github.com/TinkoffCreditSystems/ng-event-plugins/issues/11)) ([ab68909](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/ab68909b583960f8991e3ea6673aa1a9b57dc5bf))
+
 ## [2.0.0](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v1.0.1...v2.0.0) (2020-12-11)
 
 ### ⚠ BREAKING CHANGES
