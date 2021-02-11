@@ -11,6 +11,7 @@ import {By} from '@angular/platform-browser';
 import {BehaviorSubject} from 'rxjs';
 import {NG_EVENT_PLUGINS} from '../constants/plugins';
 import {shouldCall} from '../decorators/should-call';
+import {asCallable} from '../utils/as-callable';
 
 describe('EventManagers', () => {
     @Component({
@@ -53,7 +54,7 @@ describe('EventManagers', () => {
         @HostListener('$.style.width.%')
         @HostBinding('$.class.active')
         @HostListener('$.class.active')
-        readonly test = new BehaviorSubject(1);
+        readonly test = asCallable(new BehaviorSubject(1));
 
         constructor(@Inject(ElementRef) readonly elementRef: ElementRef<HTMLElement>) {}
 
