@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.1.0...v2.1.1) (2021-02-12)
+
+
+### Bug Fixes
+
+* **aot:** add utility function to spoof callable in AOT compiler ([b0bed98](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/b0bed9801f43e5651283bca0817ec899cac7fd4b))
+
 ## [2.1.0](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.0.0...v2.1.0) (2021-02-10)
 
 
