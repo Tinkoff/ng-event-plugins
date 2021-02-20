@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.1.1...v2.1.2) (2021-02-20)
+
+
+### Bug Fixes
+
+* **bind:** add nullish coalescing instead of resetting element property ([0562714](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/0562714e1fbbb6df84c8c8121e7fb54e32817779))
+
 ### [2.1.1](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.1.0...v2.1.1) (2021-02-12)
 
 
