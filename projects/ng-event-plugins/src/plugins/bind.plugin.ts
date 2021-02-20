@@ -11,7 +11,7 @@ export class BindEventPlugin extends AbstractEventPlugin {
         element: HTMLElement & Record<string, Observable<unknown>>,
         event: string,
     ): Function {
-        element[event] = EMPTY;
+        element[event] = element[event] ?? EMPTY;
 
         const method = this.getMethod(element, event);
         const zone$ = this.manager.getZone().onStable;
