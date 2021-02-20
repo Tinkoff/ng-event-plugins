@@ -1,6 +1,6 @@
 {
     "name": "@tinkoff/ng-event-plugins",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "peerDependencies": {
         "@angular/core": ">=9.0.0",
         "@angular/platform-browser": ">=9.0.0",
