@@ -4,13 +4,10 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [2.1.3](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.1.2...v2.1.3) (2021-03-01)
 
-### Features
-
--   **bind:** add style dasharize ([2cdf77e](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/2cdf77ea7fa73d98ef3ef9d11766330ef7e0be48))
-
 ### Bug Fixes
 
 -   **bind:** removes attribute if null provided ([113d9fb](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/113d9fb4e9ee969dc970a88efbace6ffcdab70af))
+-   **bind:** add style dasharize ([2cdf77e](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/2cdf77ea7fa73d98ef3ef9d11766330ef7e0be48))
 
 ### [2.1.2](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.1.1...v2.1.2) (2021-02-20)
 
