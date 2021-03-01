@@ -31,7 +31,10 @@ export class BindEventPlugin extends AbstractEventPlugin {
         const [, key, value, unit = ''] = event.split('.');
 
         if (event.endsWith('.attr')) {
-            return v => element.setAttribute(key, String(v));
+            return v =>
+                v === null
+                    ? element.removeAttribute(key)
+                    : element.setAttribute(key, String(v));
         }
 
         if (key === 'class') {

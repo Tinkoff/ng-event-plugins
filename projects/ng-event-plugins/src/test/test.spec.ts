@@ -54,7 +54,7 @@ describe('EventManagers', () => {
         @HostListener('$.style.width.%')
         @HostBinding('$.class.active')
         @HostListener('$.class.active')
-        readonly test = asCallable(new BehaviorSubject(1));
+        readonly test = asCallable(new BehaviorSubject<number | null>(1));
 
         constructor(@Inject(ElementRef) readonly elementRef: ElementRef<HTMLElement>) {}
 
@@ -175,13 +175,13 @@ describe('EventManagers', () => {
     });
 
     it('Observable bindings are updated', () => {
-        testComponent.test.next(0);
+        testComponent.test.next(null);
 
         expect(testComponent.elementRef.nativeElement.getAttribute('data-value')).toBe(
-            '0',
+            null,
         );
         expect(testComponent.elementRef.nativeElement.tabIndex).toBe(0);
-        expect(testComponent.elementRef.nativeElement.style.width).toBe('0%');
+        expect(testComponent.elementRef.nativeElement.style.width).toBe('1%');
         expect(testComponent.elementRef.nativeElement.classList.contains('active')).toBe(
             false,
         );
