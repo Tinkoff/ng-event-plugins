@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {concat, defer, EMPTY, Observable} from 'rxjs';
 import {takeWhile} from 'rxjs/operators';
-import { dasharize } from '../utils/dasharize';
+import {dasharize} from '../utils/dasharize';
 import {AbstractEventPlugin} from './abstract.plugin';
 
 @Injectable()
