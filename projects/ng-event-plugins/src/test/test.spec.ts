@@ -36,6 +36,9 @@ describe('EventManagers', () => {
             <div class="wrapper" (click.capture.stop)="noop()">
                 <div id="captured-clicks" class="element" (click)="onCaptured()"></div>
             </div>
+            <div class="wrapper" (click.self)="onBubbled()">
+                <div id="bubbled-clicks" class="element" (click)="noop()"></div>
+            </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
@@ -45,6 +48,7 @@ describe('EventManagers', () => {
         onPreventedClick = jasmine.createSpy('onPreventedClick');
         onWrapper = jasmine.createSpy('onWrapper');
         onCaptured = jasmine.createSpy('onCaptured');
+        onBubbled = jasmine.createSpy('onBubbled');
 
         @HostBinding('$.data-value.attr')
         @HostListener('$.data-value.attr')
@@ -95,6 +99,7 @@ describe('EventManagers', () => {
         testComponent.onWrapper.calls.reset();
         testComponent.onStoppedClick.calls.reset();
         testComponent.onPreventedClick.calls.reset();
+        testComponent.onBubbled.calls.reset();
     });
 
     it('Clicks are stopped', () => {
@@ -155,6 +160,28 @@ describe('EventManagers', () => {
         fixture.detectChanges();
 
         expect(testComponent.onCaptured).not.toHaveBeenCalled();
+    });
+
+    it('Self listeners not triggered on bubbled events', () => {
+        const event = new Event('click', {bubbles: true});
+        const element = fixture.debugElement.query(By.css('#bubbled-clicks'))!
+            .nativeElement;
+
+        element.dispatchEvent(event);
+        fixture.detectChanges();
+
+        expect(testComponent.onBubbled).not.toHaveBeenCalled();
+    });
+
+    it('Self listeners triggered on events originated on the same element', () => {
+        const event = new Event('click', {bubbles: true});
+        const element = fixture.debugElement.query(By.css('#bubbled-clicks'))!
+            .nativeElement.parentElement;
+
+        element.dispatchEvent(event);
+        fixture.detectChanges();
+
+        expect(testComponent.onBubbled).toHaveBeenCalled();
     });
 
     it('Global capture throws', () => {
