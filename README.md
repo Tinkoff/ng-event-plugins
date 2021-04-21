@@ -38,6 +38,7 @@ _preventDefault()_ and _stopPropagation()_.
 
     - `.stop` to call stopPropagation() on event
     - `.prevent` to call preventDefault() on event
+    - `.self` to skip bubbled events
     - `.silent` to call event handler outside Angular's `NgZone`
     - `.capture` to listen to events in [capture phase](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase)
 
