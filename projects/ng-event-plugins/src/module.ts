@@ -3,6 +3,7 @@ import {EVENT_MANAGER_PLUGINS} from '@angular/platform-browser';
 import {NG_EVENT_PLUGINS} from './constants/plugins';
 import {SilentEventPlugin} from './plugins/silent.plugin';
 
+// @dynamic
 @NgModule({
     providers: NG_EVENT_PLUGINS,
 })
