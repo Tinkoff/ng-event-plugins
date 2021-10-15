@@ -11,3 +11,4 @@ export * from './plugins/stop.plugin';
 export * from './plugins/zone.plugin';
 export * from './types/predicate';
 export * from './utils/as-callable';
+export * from './module';
