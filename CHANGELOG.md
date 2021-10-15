@@ -6,9 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
--   **bind:** add style dasharize ([2cdf77e](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/2cdf77ea7fa73d98ef3ef9d11766330ef7e0be48))
 -   **module:** add module for clearer addition ([#22](https://github.com/TinkoffCreditSystems/ng-event-plugins/issues/22)) ([a1a947d](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/a1a947d6a9970b716fb08cc5848466fabf4b6cce))
--   **self:** add new plugin ([#14](https://github.com/TinkoffCreditSystems/ng-event-plugins/issues/14)) ([0193b6f](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/0193b6ff1efe9b85dcb0a748e65f5cc4a5ca8d63))
 
 ### Bug Fixes
 
