@@ -13,11 +13,12 @@ _preventDefault()_ and _stopPropagation()_.
 
 ## How to use
 
-1. Add new providers to your app module:
+1. Add `EventPluginsModule` to your app module:
 
     ```typescript
     import {NgModule} from '@angular/core';
-    import {NG_EVENT_PLUGINS} from '@tinkoff/ng-event-plugins'; // <-- THIS
+    import {BrowserModule} from '@angular/platform-browser';
+    import {EventPluginsModule} from '@tinkoff/ng-event-plugins'; // <-- THIS
 
     @NgModule({
         bootstrap: [
@@ -25,14 +26,17 @@ _preventDefault()_ and _stopPropagation()_.
         ],
         imports: [
             /*...*/
+            BrowserModule,
+            EventPluginsModule, // <-- GOES HERE
         ],
         declarations: [
             /*...*/
         ],
-        providers: NG_EVENT_PLUGINS, // <-- GOES HERE
     })
     export class AppModule {}
     ```
+
+> `BrowserModule` or `BrowserAnimationsModule` must go first. You will see a warning if you mess the order.
 
 2. Use new modifiers for events in templates and in `@HostListener`:
 

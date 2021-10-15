@@ -9,8 +9,8 @@ import {
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {BehaviorSubject} from 'rxjs';
-import {NG_EVENT_PLUGINS} from '../constants/plugins';
 import {shouldCall} from '../decorators/should-call';
+import {EventPluginsModule} from '../module';
 import {asCallable} from '../utils/as-callable';
 
 describe('EventManagers', () => {
@@ -33,11 +33,11 @@ describe('EventManagers', () => {
                     (click.silent)="onFilteredClicks($event.bubbles)"
                 ></div>
             </div>
-            <div class="wrapper" (click.capture.stop)="noop()">
+            <div class="wrapper" (click.capture.stop)="(0)">
                 <div id="captured-clicks" class="element" (click)="onCaptured()"></div>
             </div>
             <div class="wrapper" (click.self)="onBubbled()">
-                <div id="bubbled-clicks" class="element" (click)="noop()"></div>
+                <div id="bubbled-clicks" class="element" (click)="(0)"></div>
             </div>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,8 +54,8 @@ describe('EventManagers', () => {
         @HostListener('$.data-value.attr')
         @HostBinding('$.tabIndex')
         @HostListener('$.tabIndex')
-        @HostBinding('$.style.width.%')
-        @HostListener('$.style.width.%')
+        @HostBinding('$.style.marginTop.%')
+        @HostListener('$.style.marginTop.%')
         @HostBinding('$.class.active')
         @HostListener('$.class.active')
         readonly test = asCallable(new BehaviorSubject<number | null>(1));
@@ -69,25 +69,21 @@ describe('EventManagers', () => {
         onFilteredClicks(_bubbles: boolean) {
             this.flag = true;
         }
-
-        noop() {}
     }
 
     @Component({
-        template: `<div (document:click.capture)="noop()"></div>`,
+        template: `<div (document:click.capture)="(0)"></div>`,
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
-    class BrokenComponent {
-        noop() {}
-    }
+    class BrokenComponent {}
 
     let fixture: ComponentFixture<TestComponent>;
     let testComponent: TestComponent;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [EventPluginsModule],
             declarations: [TestComponent, BrokenComponent],
-            providers: NG_EVENT_PLUGINS,
         });
 
         fixture = TestBed.createComponent(TestComponent);
@@ -195,7 +191,7 @@ describe('EventManagers', () => {
             '1',
         );
         expect(testComponent.elementRef.nativeElement.tabIndex).toBe(1);
-        expect(testComponent.elementRef.nativeElement.style.width).toBe('1%');
+        expect(testComponent.elementRef.nativeElement.style.marginTop).toBe('1%');
         expect(testComponent.elementRef.nativeElement.classList.contains('active')).toBe(
             true,
         );
@@ -208,7 +204,7 @@ describe('EventManagers', () => {
             null,
         );
         expect(testComponent.elementRef.nativeElement.tabIndex).toBe(0);
-        expect(testComponent.elementRef.nativeElement.style.width).toBe('1%');
+        expect(testComponent.elementRef.nativeElement.style.marginTop).toBe('1%');
         expect(testComponent.elementRef.nativeElement.classList.contains('active')).toBe(
             false,
         );
