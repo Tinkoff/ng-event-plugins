@@ -36,7 +36,7 @@ _preventDefault()_ and _stopPropagation()_.
     export class AppModule {}
     ```
 
-> `BrowserModule` or `BrowserAnimationsModule` must go first. You will see a warning if you mess the order.
+> `BrowserModule` or `BrowserAnimationsModule` must go first. You will see an error thrown if you mess the order.
 
 2. Use new modifiers for events in templates and in `@HostListener`:
 

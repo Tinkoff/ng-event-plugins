@@ -9,9 +9,10 @@ import {SilentEventPlugin} from './plugins/silent.plugin';
 })
 export class EventPluginsModule {
     constructor(@Inject(EVENT_MANAGER_PLUGINS) plugins: readonly unknown[]) {
-        console.assert(
-            !(plugins[0] instanceof SilentEventPlugin),
-            'EventManagerModule must come after BrowserModule in imports',
-        );
+        if (plugins[0] instanceof SilentEventPlugin) {
+            throw new Error(
+                'EventManagerModule must come after BrowserModule or BrowserAnimationsModule in imports',
+            );
+        }
     }
 }
