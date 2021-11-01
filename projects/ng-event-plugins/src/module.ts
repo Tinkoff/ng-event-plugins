@@ -11,7 +11,15 @@ export class EventPluginsModule {
     constructor(@Inject(EVENT_MANAGER_PLUGINS) plugins: readonly unknown[]) {
         console.assert(
             !(plugins[0] instanceof SilentEventPlugin),
-            'EventManagerModule must come after BrowserModule in imports',
+            'EventPluginsModule must come after BrowserModule in imports',
         );
+        console.assert(
+            !EventPluginsModule.inited,
+            'EventPluginsModule must be used only once in the topmost module to setup global providers',
+        );
+
+        EventPluginsModule.inited = true;
     }
+
+    static inited = false;
 }
