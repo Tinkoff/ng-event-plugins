@@ -1,6 +1,6 @@
 {
     "name": "@tinkoff/ng-event-plugins",
-    "version": "2.3.1",
+    "version": "2.3.2",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
