@@ -1,7 +1,7 @@
 import {Provider} from '@angular/core';
 import {EVENT_MANAGER_PLUGINS} from '@angular/platform-browser';
 import {BindEventPlugin} from '../plugins/bind.plugin';
-import {CaptureEventPlugin} from '../plugins/capture.plugin';
+import {OptionsEventPlugin} from '../plugins/options.plugin';
 import {PreventEventPlugin} from '../plugins/prevent.plugin';
 import {SelfEventPlugin} from '../plugins/self.plugin';
 import {SilentEventPlugin} from '../plugins/silent.plugin';
@@ -36,7 +36,7 @@ export const NG_EVENT_PLUGINS: Provider[] = [
     },
     {
         provide: EVENT_MANAGER_PLUGINS,
-        useClass: CaptureEventPlugin,
+        useClass: OptionsEventPlugin,
         multi: true,
     },
     {
