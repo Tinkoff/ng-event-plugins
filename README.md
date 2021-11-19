@@ -45,6 +45,8 @@ _preventDefault()_ and _stopPropagation()_.
     - `.self` to skip bubbled events
     - `.silent` to call event handler outside Angular's `NgZone`
     - `.capture` to listen to events in [capture phase](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase)
+    - `.passive` to add [passive event listener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scrolling_performance_with_passive_listeners)
+    - `.once` to remove event listener after first callback
 
     For example:
 

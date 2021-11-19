@@ -7,7 +7,7 @@ import {AbstractEventPlugin} from './abstract.plugin';
  */
 @Injectable()
 export class ZoneEventPlugin extends AbstractEventPlugin {
-    protected readonly modifier = 'init';
+    protected readonly modifier = '.init';
 
     addEventListener(_element: HTMLElement, _event: string, handler: Function): Function {
         return this.handle(handler);

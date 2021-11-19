@@ -63,9 +63,9 @@ describe('EventManagers', () => {
         constructor(@Inject(ElementRef) readonly elementRef: ElementRef<HTMLElement>) {}
 
         @shouldCall(bubbles => bubbles)
-        @HostListener('init', ['$event'])
+        @HostListener('click.init', ['$event'])
         @HostListener('document:click.silent.stop.prevent')
-        @HostListener('document:init')
+        @HostListener('document:click.init')
         onFilteredClicks(_bubbles: boolean) {
             this.flag = true;
         }

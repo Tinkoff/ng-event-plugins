@@ -12,7 +12,7 @@ export abstract class AbstractEventPlugin implements EventManagerPlugin {
     manager!: EventManager;
 
     supports(event: string): boolean {
-        return event.split('.').indexOf(this.modifier) !== -1;
+        return event.includes(this.modifier);
     }
 
     addGlobalEventListener(
@@ -34,7 +34,7 @@ export abstract class AbstractEventPlugin implements EventManagerPlugin {
     protected unwrap(event: string): string {
         return event
             .split('.')
-            .filter(v => v !== this.modifier)
+            .filter(v => !this.modifier.includes(v))
             .join('.');
     }
 }

@@ -3,7 +3,7 @@ import {AbstractEventPlugin} from './abstract.plugin';
 
 @Injectable()
 export class PreventEventPlugin extends AbstractEventPlugin {
-    protected readonly modifier = 'prevent';
+    protected readonly modifier = '.prevent';
 
     addEventListener(element: HTMLElement, event: string, handler: Function): Function {
         const wrapped = (event: Event) => {
