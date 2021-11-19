@@ -46,7 +46,7 @@ export class SelectComponent {
 
     // Only react to Esc if dropdown is open
     @shouldCall((_, open) => open)
-    @HostListener('init.onEsc', ['$event'])
+    @HostListener('keydown.esc.init', ['$event'])
     @HostListener('keydown.esc.silent', ['$event', 'open'])
     onEsc(event: KeyboardEvent) {
         event.stopPropagation();
@@ -56,7 +56,7 @@ export class SelectComponent {
 
     // Only react to focusout if focus leaves component boundaries
     @shouldCall((relatedTarget, nativeElement) => !nativeElement.contains(relatedTarget))
-    @HostListener('init.onBlur', ['$event'])
+    @HostListener('focusout.init', ['$event'])
     @HostListener('focusout.silent', ['$event.relatedTarget', 'elementRef.nativeElement'])
     onBlur() {
         this.open = false;
@@ -64,14 +64,14 @@ export class SelectComponent {
 
     // Only react to mousemove if focus is required
     @shouldCall(element => element !== document.activeElement)
-    @HostListener('init.onMouseMove', ['$event'])
+    @HostListener('mousemove.init', ['$event'])
     onMouseMove(element: HTMLElement) {
         element.focus();
     }
 
     // Only react to arrow down if we are not on the last item
     @shouldCall((currentIndex, length) => currentIndex < length - 1)
-    @HostListener('init.onArrowDown', ['$event'])
+    @HostListener('keydown.arrowDown.init', ['$event'])
     onArrowDown(currentIndex: number) {
         this.options
             .find((_item, index) => index === currentIndex + 1)!
@@ -80,7 +80,7 @@ export class SelectComponent {
 
     // Only react to arrow up if we are not on the first item
     @shouldCall(currentIndex => !!currentIndex)
-    @HostListener('init.onArrowUp', ['$event'])
+    @HostListener('keydown.arrowUp.init', ['$event'])
     onArrowUp(currentIndex: number) {
         this.options
             .find((_item, index) => index === currentIndex - 1)!

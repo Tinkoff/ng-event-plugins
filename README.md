@@ -93,7 +93,7 @@ export function scrollFilter(element: HTMLElement): boolean {
 // ...
 
 @shouldCall(scrollFilter)
-@HostListener('init.onScroll', ['$event'])
+@HostListener('scroll.init', ['$event'])
 onScroll(_element: HTMLElement) {
     this.someService.requestMoreData();
 }
