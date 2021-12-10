@@ -98,6 +98,7 @@
         "tslint": "~5.15.0",
         "typescript": "~3.8.3"
     },
+    "web-types": "./projects/ng-event-plugins/web-types.json",
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged && npm run typecheck"
