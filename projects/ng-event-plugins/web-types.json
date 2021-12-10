@@ -1,0 +1,58 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/v2-preview/web-types.json",
+    "name": "ng-event-plugins",
+    "framework": "angular",
+    "version": "1.0.0",
+    "description-markup": "markdown",
+    "contributions": {
+        "js": {
+            "ng-custom-events": [
+                {
+                    "name": "Custom modifiers for declarative events handling",
+                    "priority": "normal",
+                    "pattern": {
+                        "template": [
+                            {
+                                "items": {
+                                    "path": "/js/events",
+                                    "includeVirtual": false
+                                }
+                            },
+                            {
+                                "items": "ng-event-plugins-modifiers",
+                                "template": [".", "#...", "#item:modifiers"],
+                                "priority": "high",
+                                "repeat": true,
+                                "unique": true,
+                                "required": false
+                            }
+                        ]
+                    },
+                    "ng-event-plugins-modifiers": [
+                        {
+                            "name": "capture"
+                        },
+                        {
+                            "name": "once"
+                        },
+                        {
+                            "name": "passive"
+                        },
+                        {
+                            "name": "prevent"
+                        },
+                        {
+                            "name": "self"
+                        },
+                        {
+                            "name": "silent"
+                        },
+                        {
+                            "name": "stop"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

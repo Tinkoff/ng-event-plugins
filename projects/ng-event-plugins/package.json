@@ -26,5 +26,6 @@
     "authors": ["Alex Inkin <a.inkin@tinkoff.ru>", "Roman Sedov <r.sedov@tinkoff.ru>"],
     "repository": "https://github.com/TinkoffCreditSystems/ng-event-plugins",
     "bugs": "https://github.com/TinkoffCreditSystems/ng-event-plugins/issues",
-    "homepage": "https://github.com/TinkoffCreditSystems/ng-event-plugins#README"
+    "homepage": "https://github.com/TinkoffCreditSystems/ng-event-plugins#README",
+    "web-types": "./web-types.json"
 }
