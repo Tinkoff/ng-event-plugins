@@ -15,7 +15,7 @@ jobs:
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
-        path: ~/.npm 
+        path: ~/.npm
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.OS }}-node-
@@ -31,4 +31,4 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./coverage/common/lcov.info
+        path-to-lcov: ./coverage/ng-event-plugins/lcov.info
