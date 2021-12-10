@@ -7,10 +7,11 @@ import {
     Inject,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {BehaviorSubject} from 'rxjs';
+import {By, EventManager} from '@angular/platform-browser';
+import {BehaviorSubject, identity} from 'rxjs';
 import {shouldCall} from '../decorators/should-call';
 import {EventPluginsModule} from '../module';
+import {BindEventPlugin} from '../plugins/bind.plugin';
 import {asCallable} from '../utils/as-callable';
 
 describe('EventManagers', () => {
@@ -208,5 +209,42 @@ describe('EventManagers', () => {
         expect(testComponent.elementRef.nativeElement.classList.contains('active')).toBe(
             false,
         );
+    });
+
+    it('bind plugin doesnt crash if observable is missing', () => {
+        const bind = new BindEventPlugin();
+        const element: any = document.createElement('div');
+
+        bind.manager = TestBed.inject(EventManager);
+
+        expect(() => bind.addEventListener(element, 'test')).not.toThrow();
+    });
+
+    describe('shouldCall does not crash without zone', () => {
+        class Test {
+            flag = false;
+
+            @shouldCall(identity)
+            test(flag: boolean) {
+                this.flag = flag;
+            }
+        }
+
+        it('and calls the method', () => {
+            const test = new Test();
+
+            test.test(true);
+
+            expect(test.flag).toBe(true);
+        });
+
+        it('and doesnt call the method', () => {
+            const test = new Test();
+
+            test.flag = true;
+            test.test(false);
+
+            expect(test.flag).toBe(true);
+        });
     });
 });
