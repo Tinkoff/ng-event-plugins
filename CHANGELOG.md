@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.4.0...v2.5.0) (2021-12-10)
+
+### Features
+
+-   add web-types for autocomplete ([#30](https://github.com/TinkoffCreditSystems/ng-event-plugins/issues/30)) ([53c5852](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/53c58520fa0521dd658125211efd38c1ebe747d4))
+
 ## [2.4.0](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.3.2...v2.4.0) (2021-11-19)
 
 ### Features
