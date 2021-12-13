@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.1](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.5.0...v2.5.1) (2021-12-13)
+
+### Bug Fixes
+
+-   **web-types:** add descriptions and version ([9e39ce7](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/9e39ce77d5d33798e083b9c0176ecded9b46d13e))
+
 ## [2.5.0](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.4.0...v2.5.0) (2021-12-10)
 
 ### Features
