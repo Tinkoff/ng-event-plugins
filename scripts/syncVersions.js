@@ -7,7 +7,7 @@ const {version} = require('../package.json');
 syncVersions('projects');
 
 function syncVersions(root) {
-    glob(root + '/**/package.json', (_, files) => {
+    glob(root + '/**/*(package.json|web-types.json)', (_, files) => {
         files.forEach(file => {
             const packageJson = JSON.parse(fs.readFileSync(file));
 
