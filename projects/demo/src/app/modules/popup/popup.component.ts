@@ -10,7 +10,7 @@ export class PopupComponent {
     closed = new EventEmitter<void>();
 
     @HostListener('window:keydown.esc')
-    onEsc() {
+    onEsc(): void {
         this.closed.emit();
     }
 }

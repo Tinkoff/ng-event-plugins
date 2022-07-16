@@ -20,12 +20,15 @@
                         "main": "projects/demo/src/main.browser.ts",
                         "polyfills": "projects/demo/src/polyfills.ts",
                         "tsConfig": "tsconfig.json",
-                        "aot": false,
                         "assets": ["projects/demo/src/favicon.ico"],
-                        "styles": [
-                            "node_modules/highlight.js/styles/idea.css",
-                            "projects/demo/src/styles.css"
-                        ],
+                        "styles": ["node_modules/highlight.js/styles/idea.css", "projects/demo/src/styles.css"],
+                        "showCircularDependencies": false,
+                        "vendorChunk": true,
+                        "extractLicenses": false,
+                        "buildOptimizer": false,
+                        "sourceMap": true,
+                        "optimization": false,
+                        "namedChunks": true,
                         "scripts": []
                     },
                     "configurations": {
@@ -33,12 +36,10 @@
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
-                            "extractCss": true,
                             "namedChunks": false,
-                            "aot": true,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
                             "buildOptimizer": true,
+                            "statsJson": false,
+                            "progress": false,
                             "budgets": [
                                 {
                                     "type": "initial",
@@ -46,8 +47,10 @@
                                     "maximumError": "5mb"
                                 }
                             ]
-                        }
-                    }
+                        },
+                        "development": {}
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -64,16 +67,58 @@
                     "builder": "@angular-devkit/build-angular:server",
                     "options": {
                         "outputPath": "dist/demo/server",
-                        "main": "projects/demo/src/main.server.ts",
-                        "tsConfig": "projects/demo/tsconfig.server.json"
-                    }
+                        "main": "projects/demo/server.ts",
+                        "tsConfig": "projects/demo/tsconfig.server.json",
+                        "inlineStyleLanguage": "less"
+                    },
+                    "configurations": {
+                        "production": {
+                            "outputHashing": "media",
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/demo/src/environments/environment.ts",
+                                    "with": "projects/demo/src/environments/environment.prod.ts"
+                                }
+                            ]
+                        },
+                        "development": {
+                            "optimization": false,
+                            "sourceMap": true,
+                            "extractLicenses": false
+                        }
+                    },
+                    "defaultConfiguration": "production"
                 },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
+                "serve-ssr": {
+                    "builder": "@nguniversal/builders:ssr-dev-server",
+                    "configurations": {
+                        "development": {
+                            "browserTarget": "demo:build:development",
+                            "serverTarget": "demo:server:development"
+                        },
+                        "production": {
+                            "browserTarget": "demo:build:production",
+                            "serverTarget": "demo:server:production"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "prerender": {
+                    "builder": "@nguniversal/builders:prerender",
                     "options": {
-                        "tsConfig": ["tsconfig.json"],
-                        "exclude": ["**/node_modules/**"]
-                    }
+                        "routes": ["/"]
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "demo:build:production",
+                            "serverTarget": "demo:server:production"
+                        },
+                        "development": {
+                            "browserTarget": "demo:build:development",
+                            "serverTarget": "demo:server:development"
+                        }
+                    },
+                    "defaultConfiguration": "production"
                 }
             }
         },
@@ -83,7 +128,7 @@
             "sourceRoot": "projects/ng-event-plugins/src",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
                     "options": {
                         "tsConfig": "projects/ng-event-plugins/tsconfig.lib.json",
                         "project": "projects/ng-event-plugins/ng-package.json"
@@ -102,16 +147,6 @@
                         "karmaConfig": "projects/ng-event-plugins/karma.conf.js",
                         "codeCoverage": true,
                         "browsers": "ChromeHeadless"
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": [
-                            "projects/ng-event-plugins/tsconfig.lib.json",
-                            "projects/ng-event-plugins/tsconfig.spec.json"
-                        ],
-                        "exclude": ["**/node_modules/**"]
                     }
                 }
             }

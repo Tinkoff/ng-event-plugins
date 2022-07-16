@@ -9,6 +9,7 @@ import {
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By, EventManager} from '@angular/platform-browser';
 import {BehaviorSubject, identity} from 'rxjs';
+
 import {shouldCall} from '../decorators/should-call';
 import {EventPluginsModule} from '../module';
 import {BindEventPlugin} from '../plugins/bind.plugin';
@@ -44,13 +45,6 @@ describe('EventManagers', () => {
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class TestComponent {
-        flag = false;
-        onStoppedClick = jasmine.createSpy('onStoppedClick');
-        onPreventedClick = jasmine.createSpy('onPreventedClick');
-        onWrapper = jasmine.createSpy('onWrapper');
-        onCaptured = jasmine.createSpy('onCaptured');
-        onBubbled = jasmine.createSpy('onBubbled');
-
         @HostBinding('$.data-value.attr')
         @HostListener('$.data-value.attr')
         @HostBinding('$.tabIndex')
@@ -61,19 +55,28 @@ describe('EventManagers', () => {
         @HostListener('$.class.active')
         readonly test = asCallable(new BehaviorSubject<number | null>(1));
 
+        flag = false;
+        onStoppedClick = jasmine.createSpy('onStoppedClick');
+        onPreventedClick = jasmine.createSpy('onPreventedClick');
+        onWrapper = jasmine.createSpy('onWrapper');
+        onCaptured = jasmine.createSpy('onCaptured');
+        onBubbled = jasmine.createSpy('onBubbled');
+
         constructor(@Inject(ElementRef) readonly elementRef: ElementRef<HTMLElement>) {}
 
         @shouldCall(bubbles => bubbles)
         @HostListener('click.init', ['$event'])
         @HostListener('document:click.silent.stop.prevent')
         @HostListener('document:click.init')
-        onFilteredClicks(_bubbles: boolean) {
+        onFilteredClicks(_bubbles: boolean): void {
             this.flag = true;
         }
     }
 
     @Component({
-        template: `<div (document:click.capture)="(0)"></div>`,
+        template: `
+            <div (document:click.capture)="(0)"></div>
+        `,
         changeDetection: ChangeDetectionStrategy.OnPush,
     })
     class BrokenComponent {}
@@ -101,8 +104,9 @@ describe('EventManagers', () => {
 
     it('Clicks are stopped', () => {
         const event = new Event('click', {bubbles: true});
-        const element = fixture.debugElement.query(By.css('#stopped-clicks'))!
-            .nativeElement;
+        const element = fixture.debugElement.query(
+            By.css('#stopped-clicks'),
+        )!.nativeElement;
 
         element.dispatchEvent(event);
         fixture.detectChanges();
@@ -113,8 +117,9 @@ describe('EventManagers', () => {
 
     it('Clicks go through with default prevented', () => {
         const event = new Event('click', {bubbles: true, cancelable: true});
-        const element = fixture.debugElement.query(By.css('#prevented-clicks'))!
-            .nativeElement;
+        const element = fixture.debugElement.query(
+            By.css('#prevented-clicks'),
+        )!.nativeElement;
 
         element.dispatchEvent(event);
         fixture.detectChanges();
@@ -128,8 +133,9 @@ describe('EventManagers', () => {
 
     it('Clicks are filtered', () => {
         const event = new Event('click');
-        const element = fixture.debugElement.query(By.css('#filtered-clicks'))!
-            .nativeElement;
+        const element = fixture.debugElement.query(
+            By.css('#filtered-clicks'),
+        )!.nativeElement;
 
         element.dispatchEvent(event);
         fixture.detectChanges();
@@ -139,8 +145,9 @@ describe('EventManagers', () => {
 
     it('Clicks go through filtered', () => {
         const event = new Event('click', {bubbles: true});
-        const element = fixture.debugElement.query(By.css('#filtered-clicks'))!
-            .nativeElement;
+        const element = fixture.debugElement.query(
+            By.css('#filtered-clicks'),
+        )!.nativeElement;
 
         element.dispatchEvent(event);
         fixture.detectChanges();
@@ -150,8 +157,9 @@ describe('EventManagers', () => {
 
     it('Clicks are captured', () => {
         const event = new Event('click', {bubbles: true});
-        const element = fixture.debugElement.query(By.css('#captured-clicks'))!
-            .nativeElement;
+        const element = fixture.debugElement.query(
+            By.css('#captured-clicks'),
+        )!.nativeElement;
 
         element.dispatchEvent(event);
         fixture.detectChanges();
@@ -161,8 +169,9 @@ describe('EventManagers', () => {
 
     it('Self listeners not triggered on bubbled events', () => {
         const event = new Event('click', {bubbles: true});
-        const element = fixture.debugElement.query(By.css('#bubbled-clicks'))!
-            .nativeElement;
+        const element = fixture.debugElement.query(
+            By.css('#bubbled-clicks'),
+        )!.nativeElement;
 
         element.dispatchEvent(event);
         fixture.detectChanges();
@@ -225,7 +234,7 @@ describe('EventManagers', () => {
             flag = false;
 
             @shouldCall(identity)
-            test(flag: boolean) {
+            test(flag: boolean): void {
                 this.flag = flag;
             }
         }

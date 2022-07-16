@@ -1,11 +1,6 @@
 {
     "name": "@tinkoff/ng-event-plugins",
     "version": "2.5.1",
-    "peerDependencies": {
-        "@angular/core": ">=9.0.0",
-        "@angular/platform-browser": ">=9.0.0",
-        "rxjs": ">=6.0.0"
-    },
     "description": "This is a library for optimizing performance sensitive events and declarative preventDefault and stopPropagation",
     "keywords": [
         "angular",
@@ -22,10 +17,18 @@
         "change",
         "detection"
     ],
-    "license": "Apache-2.0",
-    "authors": ["Alex Inkin <a.inkin@tinkoff.ru>", "Roman Sedov <r.sedov@tinkoff.ru>"],
-    "repository": "https://github.com/TinkoffCreditSystems/ng-event-plugins",
-    "bugs": "https://github.com/TinkoffCreditSystems/ng-event-plugins/issues",
     "homepage": "https://github.com/TinkoffCreditSystems/ng-event-plugins#README",
+    "bugs": "https://github.com/TinkoffCreditSystems/ng-event-plugins/issues",
+    "repository": "https://github.com/TinkoffCreditSystems/ng-event-plugins",
+    "license": "Apache-2.0",
+    "peerDependencies": {
+        "@angular/core": ">=12.0.0",
+        "@angular/platform-browser": ">=12.0.0",
+        "rxjs": ">=6.0.0"
+    },
+    "authors": [
+        "Alex Inkin <a.inkin@tinkoff.ru>",
+        "Roman Sedov <r.sedov@tinkoff.ru>"
+    ],
     "web-types": "./web-types.json"
 }
