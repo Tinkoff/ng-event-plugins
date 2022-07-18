@@ -1,6 +1,6 @@
 {
     "name": "demo",
-    "version": "2.5.1",
+    "version": "3.0.0",
     "private": true,
     "scripts": {
         "ng": "ng",
@@ -22,7 +22,6 @@
         "rxjs": "~6.6.3",
         "zone.js": "~0.10.2"
     },
-    "web-types": "../ng-event-plugins/web-types.json",
     "devDependencies": {
         "@angular-devkit/architect": "0.1100.4",
         "@angular-devkit/build-angular": "0.1100.4",
@@ -33,5 +32,6 @@
         "ts-node": "9.0.0",
         "tslint": "6.1.3",
         "typescript": "4.0.2"
-    }
+    },
+    "web-types": "../ng-event-plugins/web-types.json"
 }
