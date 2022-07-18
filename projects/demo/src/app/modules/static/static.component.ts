@@ -1,7 +1,3 @@
-// @ts-ignore
-import {default as typescript} from '!!raw-loader!../select/select.component.ts';
-// @ts-ignore
-import {default as html} from '!!raw-loader!../select/select.template.html';
 import {AfterViewChecked, ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
@@ -10,24 +6,23 @@ import {AfterViewChecked, ChangeDetectionStrategy, Component} from '@angular/cor
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StaticComponent implements AfterViewChecked {
-    readonly typescript = typescript;
+    readonly typescript = import('!!raw-loader!../select/select.component.ts');
 
-    readonly html = html;
+    readonly html = import('!!raw-loader!../select/select.template.html');
 
     readonly items = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
 
     popup = false;
 
-    ngAfterViewChecked() {
-        // tslint:disable-next-line:no-console
-        console.log('change detection cycle', Date.now());
+    ngAfterViewChecked(): void {
+        console.info('change detection cycle', Date.now());
     }
 
-    onOpened() {
+    onOpened(): void {
         this.popup = true;
     }
 
-    onClosed() {
+    onClosed(): void {
         this.popup = false;
     }
 }
