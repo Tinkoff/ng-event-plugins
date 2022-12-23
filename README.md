@@ -79,24 +79,21 @@ _stopPropagation()_.
 ```
 
 ```typescript
-import {HostListener} from '@angular/core';
 import {shouldCall} from '@tinkoff/ng-event-plugins';
 
-export function scrollFilter(element: HTMLElement): boolean {
-    return element.scrollTop === element.scrollHeight - element.clientHeight;
+export function scrollFilter({
+ scrollTop, scrollHeight, clientHeight
+}: HTMLElement): boolean {
+    return scrollTop === scrollHeight - clientHeight;
 }
 
 // ...
 
 @shouldCall(scrollFilter)
-@HostListener('scroll.init', ['$event'])
 onScroll(_element: HTMLElement): void {
     this.someService.requestMoreData();
 }
 ```
-
-**IMPORTANT:** You must couple `@shouldCall` with `@HostListener` for `init` event as shown above until `markDirty`
-becomes public API in Angular and **@tinkoff/ng-event-plugins** v.3 is released
 
 > All examples above work the same when used with `@HostListener` and `CustomEvent`
 
@@ -115,7 +112,8 @@ becomes public API in Angular and **@tinkoff/ng-event-plugins** v.3 is released
 ## Observable host bindings
 
 In this library there's also a plugin that enables observable host bindings. Sounds weird to do host binding with event
-plugin, but the code is actually pretty simple. You can read more about it in this article [link coming soon].
+plugin, but the code is actually pretty simple. You can read more about it in
+[this article](https://indepth.dev/posts/1429/making-hostbinding-work-with-observables).
 
 To use it you need to couple `@HostListener` and `@HostBinding` on the same `Observable` property with following syntax:
 
