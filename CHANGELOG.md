@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v3.0.0...v3.1.0) (2022-12-23)
+
+### Features
+
+- **silent:** simplify getting `NgZone` in `[@should](https://github.com/should)Call`
+  ([#50](https://github.com/TinkoffCreditSystems/ng-event-plugins/issues/50))
+  ([64872cd](https://github.com/TinkoffCreditSystems/ng-event-plugins/commit/64872cd10145173d5121efbd1abf8d57363292b8))
+
 ## [3.0.0](https://github.com/TinkoffCreditSystems/ng-event-plugins/compare/v2.5.1...v3.0.0) (2022-07-18)
 
 ### ⚠ BREAKING CHANGES
