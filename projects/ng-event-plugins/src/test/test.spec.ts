@@ -13,6 +13,8 @@ import {BehaviorSubject, identity} from 'rxjs';
 import {shouldCall} from '../decorators/should-call';
 import {EventPluginsModule} from '../module';
 import {BindEventPlugin} from '../plugins/bind.plugin';
+import {SilentEventPlugin} from '../plugins/silent.plugin';
+import {ZoneEventPlugin} from '../plugins/zone.plugin';
 import {asCallable} from '../utils/as-callable';
 
 describe('EventManagers', () => {
@@ -71,21 +73,13 @@ describe('EventManagers', () => {
         }
     }
 
-    @Component({
-        template: `
-            <div (document:click.capture)="(0)"></div>
-        `,
-        changeDetection: ChangeDetectionStrategy.OnPush,
-    })
-    class BrokenComponent {}
-
     let fixture: ComponentFixture<TestComponent>;
     let testComponent: TestComponent;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [EventPluginsModule],
-            declarations: [TestComponent, BrokenComponent],
+            declarations: [TestComponent],
         });
 
         fixture = TestBed.createComponent(TestComponent);
@@ -188,13 +182,6 @@ describe('EventManagers', () => {
         expect(testComponent.onBubbled).toHaveBeenCalled();
     });
 
-    // TODO: Maybe new testing zone.js swallows it?
-    xit('Global capture throws', () => {
-        expect(() => {
-            TestBed.createComponent(BrokenComponent).detectChanges();
-        }).toThrow();
-    });
-
     it('Observable bindings work', () => {
         expect(testComponent.elementRef.nativeElement.getAttribute('data-value')).toBe(
             '1',
@@ -255,4 +242,43 @@ describe('EventManagers', () => {
             expect(test.flag).toBe(true);
         });
     });
+});
+
+it('Multiple module creations notify with console.assert', () => {
+    spyOn(window.console, 'assert');
+
+    new EventPluginsModule([new SilentEventPlugin()]) && new EventPluginsModule([]);
+
+    expect(window.console.assert).toHaveBeenCalled();
+});
+
+it('@shouldCall works without NgZone', () => {
+    class Test {
+        flag = false;
+
+        @shouldCall(identity)
+        test(flag: boolean): void {
+            this.flag = flag;
+        }
+    }
+
+    const test = new Test();
+    const zone = SilentEventPlugin.ngZone;
+
+    SilentEventPlugin.ngZone = undefined;
+    test.test(true);
+    SilentEventPlugin.ngZone = zone;
+
+    expect(test.flag).toBe(true);
+});
+
+it('Zone plugin gives console.warn', () => {
+    spyOn(window.console, 'warn');
+
+    const plugin = new ZoneEventPlugin();
+
+    plugin.addEventListener()();
+    plugin.addGlobalEventListener()();
+
+    expect(window.console.warn).toHaveBeenCalled();
 });
