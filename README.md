@@ -2,7 +2,6 @@
 
 [![npm version](https://img.shields.io/npm/v/@tinkoff/ng-event-plugins.svg)](https://npmjs.com/package/@tinkoff/ng-event-plugins)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@tinkoff/ng-event-plugins)](https://bundlephobia.com/result?p=@tinkoff/ng-event-plugins)
-[![Build Status](https://travis-ci.com/TinkoffCreditSystems/ng-event-plugins.svg?branch=master)](https://travis-ci.com/TinkoffCreditSystems/ng-event-plugins)
 [![Coverage Status](https://coveralls.io/repos/github/TinkoffCreditSystems/ng-event-plugins/badge.svg?branch=master)](https://coveralls.io/github/TinkoffCreditSystems/ng-event-plugins?branch=master)
 [![angular-open-source-starter](https://img.shields.io/badge/made%20with-angular--open--source--starter-d81676?logo=angular)](https://github.com/TinkoffCreditSystems/angular-open-source-starter)
 
@@ -147,6 +146,19 @@ You can try this
 
 You can also read this [detailed article](https://indepth.dev/supercharge-event-management-in-your-angular-application/)
 explaining how this library works
+
+## Maintained
+
+**@tinkoff/ng-event-plugins** is a part of [Taiga UI](https://github.com/Tinkoff/taiga-ui) libraries family which is backed and used by a
+large enterprise. This means you can rely on timely support and continuous development.
+
+## License
+
+🆓 Feel free to use our library in your commercial and private applications
+
+All **@tinkoff/ng-event-plugins** packages are covered by [Apache 2.0](/LICENSE)
+
+Read more about this license [here](https://choosealicense.com/licenses/apache-2.0/)
 
 ## Open-source
 
